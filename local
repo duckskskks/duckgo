@@ -89,3 +89,20 @@ precachebutton.Text = "Precache"
 precachebutton.Size = UDim2.new(0, 100, 0, 30)
 precachebutton.Position = UDim2.new(0.5, -50, 0.5, -300)
 precachebutton.Parent = precacheframe
+
+local player = game.Players.LocalPlayer local dframe = Instance.new("ScreenGui") dframe.Name = "duckgo"
+dframe.Parent = player.PlayerGui dframe.Locked = false local function moveframe(input) 
+if input.KeyCode == Enum.KeyCode.A then dframe.Position = UDim2.new(dframe.Position.X.Scale - 0.001, dframe.Position.X.Offset, 
+dframe.Position.Y.Scale, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.D then dframe.Position = UDim2.new(dframe.Position.X.Scale + 0.001,
+dframe.Position.X.Offset, dframe.Position.Y.Scale,
+dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.W then dframe.Position = UDim2.new(dframe.Position.X.Scale,
+dframe.Position.X.Offset,
+dframe.Position.Y.Scale - 0.001, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.S then dframe.Position = UDim2.new(dframe.Position.X.Scale,
+dframe.Position.X.Offset,
+dframe.Position.Y.Scale + 0.001,
+dframe.Position.Y.Offset) end end player.InputBegan:Connect(moveframe) 
+game:GetService("RunService").RenderStepped:Connect(function() dframe.Frame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1) end)
+local uis = game:GetService("RunService").RenderStepped:Connect(function()
+local vgui = game.Players.LocalPlayer.PlayerGui:WaitForChild("duckgo")
+local frame = vgui.Frame local colors = { Color3.new(1, 0, 0), Color3.new(0, 1, 0), Color3.new(0, 0, 1), Color3.new(1, 1, 0), Color3.new(1, 0, 1), Color3.new(0, 1, 1) }
+local texts = { "Script", "Exploits", "Ui", "Scripting", "Coding", "Executors" } for i, text in pairs(texts) do frame.TextLabel[i].Text = text frame.TextLabel[i].BackgroundColor3 = colors[i % #colors] end end)
