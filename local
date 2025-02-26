@@ -1,6 +1,6 @@
 local executor = Instance.new("ScreenGui")
 executor.Name = "DuckGo"
-executor.Parent = game.StarterGui
+executor.Parent = game.Players.LocalPlayer.PlayerGui
 
 local mainframe = Instance.new("Frame")
 mainframe.Name = "mainframe"
