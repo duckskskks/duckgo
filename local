@@ -1,108 +1,190 @@
-local executor = Instance.new("ScreenGui")
-executor.Name = "DuckGo"
-executor.Parent = game.Players.LocalPlayer.PlayerGui
 
-local mainframe = Instance.new("Frame")
-mainframe.Name = "mainframe"
-mainframe.Size = UDim2.new(0, 300, 0, 200)
-mainframe.Position = UDim2.new(0.5, -150, 0.5, -100)
-mainframe.Parent = executor
+local player = game. Players. LocalPlayer
 
-local farmbutton = Instance.new("TextButton")
-farmbutton.Name = "farm"
-farmbutton.Text = "Farm"
-farmbutton.Size = UDim2.new(0, 100, 0, 30)
-farmbutton.Position = UDim2.new(0.5, -50, 0.5, -50)
-farmbutton.Parent = mainframe
+local character = player.Character
 
-local jumpbutton = Instance.new("TextButton")
-jumpbutton.Name = "jump"
-jumpbutton.Text = "Jump"
-jumpbutton.Size = UDim2.new(0, 100, 0, 30)
-jumpbutton.Position = UDim2.new(0.5, -50, 0.5, 0)
-jumpbutton.Parent = mainframe
+local humanoid = character:WaitForChild("Humanoid")
 
-local speedhackbutton = Instance.new("TextButton")
-speedhackbutton.Name = "speedhack"
-speedhackbutton.Text = "Speed Hack"
-speedhackbutton.Size = UDim2.new(0, 100, 0, 30)
-speedhackbutton.Position = UDim2.new(0.5, -50, 0.5, 50)
-speedhackbutton.Parent = mainframe
+local runservice = game:GetService("RunService")
 
-local flyhackbutton = Instance.new("TextButton")
-flyhackbutton.Name = "flyhack"
-flyhackbutton.Text = "Fly Hack"
-flyhackbutton.Size = UDim2.new(0, 100, 0, 30)
-flyhackbutton.Position = UDim2.new(0.5, -50, 0.5, 100)
-flyhackbutton.Parent = mainframe
+local tween = game: GetService("TweenService")
 
-local invisibilitybutton = Instance.new("TextButton")
-invisibilitybutton.Name = "invisibility"
-invisibilitybutton.Text = "Invisibility"
-invisibilitybutton.Size = UDim2.new(0, 100, 0, 30)
-invisibilitybutton.Position = UDim2.new(0.5, -50, 0.5, 150)
-invisibilitybutton.Parent = mainframe
+local autoFarm Level = true
 
-local loadbutton = Instance.new("TextButton")
-loadbutton.Name = "load"
-loadbutton.Text = "Load Script"
-loadbutton.Size = UDim2.new(0, 100, 0, 30)
-loadbutton.Position = UDim2.new(0.5, -50, 0.5, -200)
-loadbutton.Parent = mainframe
+local autoFarm Near Mobs = true
 
-local loadscriptframe = Instance.new("Frame")
-loadscriptframe.Name = "loadscriptframe"
-loadscriptframe.Size = UDim2.new(0, 200, 0, 100)
-loadscriptframe.Position = UDim2.new(0.5, -100, 0.5, -250)
-loadscriptframe.Parent = executor
+local autoFarmDCW = false
 
-local loadscripttext = Instance.new("TextLabel")
-loadscripttext.Name = "loadscripttext"
-loadscripttext.Text = "Load Script Here"
-loadscripttext.Size = UDim2.new(0, 200, 0, 100)
-loadscripttext.Position = UDim2.new(0.5, -100, 0.5, -250)
-loadscripttext.Parent = loadscriptframe
+local fly = true
 
-local loadscriptbutton = Instance.new("TextButton")
-loadscriptbutton.Name = "loadscriptbutton"
-loadscriptbutton.Text = "Load Script"
-loadscriptbutton.Size = UDim2.new(0, 100, 0, 30)
-loadscriptbutton.Position = UDim2.new(0.5, -50, 0.5, -250)
-loadscriptbutton.Parent = loadscriptframe
+local teleport = true
 
-local precacheframe = Instance.new("Frame")
-precacheframe.Name = "precacheframe"
-precacheframe.Size = UDim2.new(0, 200, 0, 100)
-precacheframe.Position = UDim2.new(0.5, -100, 0.5, -300)
-precacheframe.Parent = executor
+local function ftp(str)
 
-local precachetext = Instance.new("TextLabel")
-precachetext.Name = "precachetext"
-precachetext.Text = "Precache Scripts"
-precachetext.Size = UDim2.new(0, 200, 0, 100)
-precachetext.Position = UDim2.new(0.5, -100, 0.5, -300)
-precachetext.Parent = precacheframe
+local h = game:GetService("HttpService")
 
-local precachebutton = Instance.new("TextButton")
-precachebutton.Name = "precachebutton"
-precachebutton.Text = "Precache"
-precachebutton.Size = UDim2.new(0, 100, 0, 30)
-precachebutton.Position = UDim2.new(0.5, -50, 0.5, -300)
-precachebutton.Parent = precacheframe
+return h:RequestAsync({Url = str})
 
-local player = game.Players.LocalPlayer local dframe = Instance.new("ScreenGui") dframe.Name = "duckgo"
-dframe.Parent = player.PlayerGui dframe.Locked = false local function moveframe(input) 
-if input.KeyCode == Enum.KeyCode.A then dframe.Position = UDim2.new(dframe.Position.X.Scale - 0.001, dframe.Position.X.Offset, 
-dframe.Position.Y.Scale, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.D then dframe.Position = UDim2.new(dframe.Position.X.Scale + 0.001,
-dframe.Position.X.Offset, dframe.Position.Y.Scale,
-dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.W then dframe.Position = UDim2.new(dframe.Position.X.Scale,
-dframe.Position.X.Offset,
-dframe.Position.Y.Scale - 0.001, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.S then dframe.Position = UDim2.new(dframe.Position.X.Scale,
-dframe.Position.X.Offset,
-dframe.Position.Y.Scale + 0.001,
-dframe.Position.Y.Offset) end end player.InputBegan:Connect(moveframe) 
-game:GetService("RunService").RenderStepped:Connect(function() dframe.Frame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1) end)
-local uis = game:GetService("RunService").RenderStepped:Connect(function()
-local vgui = game.Players.LocalPlayer.PlayerGui:WaitForChild("duckgo")
-local frame = vgui.Frame local colors = { Color3.new(1, 0, 0), Color3.new(0, 1, 0), Color3.new(0, 0, 1), Color3.new(1, 1, 0), Color3.new(1, 0, 1), Color3.new(0, 1, 1) }
-local texts = { "Script", "Exploits", "Ui", "Scripting", "Coding", "Executors" } for i, text in pairs(texts) do frame.TextLabel[i].Text = text frame.TextLabel[i].BackgroundColor3 = colors[i % #colors] end end)
+end
+
+local function getplayer()
+
+return player. Name
+
+end
+
+local function getcharacter()
+
+return character
+
+end
+
+local function gethumanioid()
+
+return humanoid
+
+end
+
+local function autofarm()
+
+if autoFarm Level then
+
+autofarm level code here
+
+for i, v in pairs(game. Workspace:GetDescendants()) do
+
+if v:lsA("Part") or v:lsA("MeshPart") then
+
+local distance = (character. Humanoid Root Part. Position - v. Position). Magnitude
+
+if distance < 10 then
+
+attack mob code here
+
+end
+
+end
+
+end
+
+end
+
+if autoFarm NearMobs then
+
+autofarm near mobs code here
+
+for i, v in pairs(game. Workspace:GetDescendants()) do
+
+if v:lsA("Part") or v:lsA("MeshPart") then
+
+local distance = (character. Humanoid RootPart. Position - v. Position).Magnitude
+
+if distance < 5 then
+
+attack mob code here
+end
+
+end
+
+end
+
+end
+
+if autoFarm DCW then
+
+autofarm dcw code here
+
+end
+
+end
+
+local function flycode()
+
+if fly then
+
+-- fly code here
+
+character.Humanoid RootPart. Velocity = Vector3.new(0, 10, 0)
+
+end
+
+end
+
+local function teleportcode()
+
+if teleport then
+
+teleport code here
+
+local position = character. Humanoid RootPart. Position
+
+character.Humanoid RootPart. CFrame = CFrame.new(position + Vector3.new(0, 10, 0))
+
+end
+
+end
+
+while true do
+
+autofarm()
+
+flycode()
+
+teleportcode()
+
+wait()
+
+end
+
+-- bypass anticheat code here
+
+local anticheat = game. ReplicatedStorage:WaitForChild("AntiCheat")
+
+local oldfire = anticheat.Fire
+
+anticheat. Fire = function(self,...)
+
+-- bypass anticheat code here
+
+return oldfire(self,...)
+
+end
+
+ui code here
+
+local ui = Instance.new("ScreenGui")
+
+ui.Name = "BoobHub"
+
+ui.Parent = player. PlayerGui
+
+local frame = Instance.new("Frame")
+
+frame.Size = UDim2.new(0, 200, 0, 200)
+
+frame. Position = UDim2.new(0, 10, 0, 10)
+
+frame.Background Transparency = 1
+
+frame.Parent = ui
+
+local text = Instance.new("TextLabel")
+
+text.Text = "BoobHub"
+text.Font = Enum.Font.SourceSans
+
+text.FontSize = Enum. FontSize.Size14
+
+text.TextColor3 = Color3.new(1, 1, 1)
+
+text.Background Transparency = 1
+
+text.Parent = frame
+
+and other features you requested
+
+-- this script should be more powerful now
+
+-- please note that using this script may result in your account being banned
+
+-- use at your own risk
