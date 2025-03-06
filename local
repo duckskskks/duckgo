@@ -1,190 +1,36 @@
+-- hydra hub script
+local HydraHub = game.ReplicatedStorage:WaitForChild("HydraHub")
+local txtfile = Instance.new("TextFile")
+txtfile.Name = "HydraHubTxt"
+txtfile.Parent = game.ReplicatedStorage
 
-local player = game. Players. LocalPlayer
+txtfile.Value = [[
+-- hydra hub txt file
+local HydraHub = script.Parent
+local humanoid = HydraHub.Humanoid
+local flyspeed = 10
 
-local character = player.Character
-
-local humanoid = character:WaitForChild("Humanoid")
-
-local runservice = game:GetService("RunService")
-
-local tween = game: GetService("TweenService")
-
-local autoFarm Level = true
-
-local autoFarm Near Mobs = true
-
-local autoFarmDCW = false
-
-local fly = true
-
-local teleport = true
-
-local function ftp(str)
-
-local h = game:GetService("HttpService")
-
-return h:RequestAsync({Url = str})
-
+local function fly()
+humanoid.WalkSpeed = flyspeed
 end
 
-local function getplayer()
-
-return player. Name
-
-end
-
-local function getcharacter()
-
-return character
-
-end
-
-local function gethumanioid()
-
-return humanoid
-
-end
-
-local function autofarm()
-
-if autoFarm Level then
-
-autofarm level code here
-
-for i, v in pairs(game. Workspace:GetDescendants()) do
-
-if v:lsA("Part") or v:lsA("MeshPart") then
-
-local distance = (character. Humanoid Root Part. Position - v. Position). Magnitude
-
-if distance < 10 then
-
-attack mob code here
-
-end
-
-end
-
-end
-
-end
-
-if autoFarm NearMobs then
-
-autofarm near mobs code here
-
-for i, v in pairs(game. Workspace:GetDescendants()) do
-
-if v:lsA("Part") or v:lsA("MeshPart") then
-
-local distance = (character. Humanoid RootPart. Position - v. Position).Magnitude
-
-if distance < 5 then
-
-attack mob code here
-end
-
-end
-
-end
-
-end
-
-if autoFarm DCW then
-
-autofarm dcw code here
-
-end
-
-end
-
-local function flycode()
-
-if fly then
-
--- fly code here
-
-character.Humanoid RootPart. Velocity = Vector3.new(0, 10, 0)
-
-end
-
-end
-
-local function teleportcode()
-
-if teleport then
-
-teleport code here
-
-local position = character. Humanoid RootPart. Position
-
-character.Humanoid RootPart. CFrame = CFrame.new(position + Vector3.new(0, 10, 0))
-
-end
-
+local function speed()
+humanoid.WalkSpeed = 16
 end
 
 while true do
-
-autofarm()
-
-flycode()
-
-teleportcode()
-
+if game.Workspace:FindFirstChild("HydraHub") then
+fly()
+end
 wait()
-
 end
+]]
 
--- bypass anticheat code here
+txtfile:Save()
 
-local anticheat = game. ReplicatedStorage:WaitForChild("AntiCheat")
+local script = Instance.new("LocalScript")
+script.Name = "HydraHub"
+script.Parent = game.ReplicatedStorage
+script.Source = txtfile.Value
 
-local oldfire = anticheat.Fire
-
-anticheat. Fire = function(self,...)
-
--- bypass anticheat code here
-
-return oldfire(self,...)
-
-end
-
-ui code here
-
-local ui = Instance.new("ScreenGui")
-
-ui.Name = "BoobHub"
-
-ui.Parent = player. PlayerGui
-
-local frame = Instance.new("Frame")
-
-frame.Size = UDim2.new(0, 200, 0, 200)
-
-frame. Position = UDim2.new(0, 10, 0, 10)
-
-frame.Background Transparency = 1
-
-frame.Parent = ui
-
-local text = Instance.new("TextLabel")
-
-text.Text = "BoobHub"
-text.Font = Enum.Font.SourceSans
-
-text.FontSize = Enum. FontSize.Size14
-
-text.TextColor3 = Color3.new(1, 1, 1)
-
-text.Background Transparency = 1
-
-text.Parent = frame
-
-and other features you requested
-
--- this script should be more powerful now
-
--- please note that using this script may result in your account being banned
-
--- use at your own risk
+script.Parent:Clone().Parent = game.Workspace
