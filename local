@@ -1,108 +1,36 @@
-local executor = Instance.new("ScreenGui")
-executor.Name = "DuckGo"
-executor.Parent = game.Players.LocalPlayer.PlayerGui
+-- hydra hub script
+local HydraHub = game.ReplicatedStorage:WaitForChild("HydraHub")
+local txtfile = Instance.new("TextFile")
+txtfile.Name = "HydraHubTxt"
+txtfile.Parent = game.ReplicatedStorage
 
-local mainframe = Instance.new("Frame")
-mainframe.Name = "mainframe"
-mainframe.Size = UDim2.new(0, 300, 0, 200)
-mainframe.Position = UDim2.new(0.5, -150, 0.5, -100)
-mainframe.Parent = executor
+txtfile.Value = [[
+-- hydra hub txt file
+local HydraHub = script.Parent
+local humanoid = HydraHub.Humanoid
+local flyspeed = 10
 
-local farmbutton = Instance.new("TextButton")
-farmbutton.Name = "farm"
-farmbutton.Text = "Farm"
-farmbutton.Size = UDim2.new(0, 100, 0, 30)
-farmbutton.Position = UDim2.new(0.5, -50, 0.5, -50)
-farmbutton.Parent = mainframe
+local function fly()
+humanoid.WalkSpeed = flyspeed
+end
 
-local jumpbutton = Instance.new("TextButton")
-jumpbutton.Name = "jump"
-jumpbutton.Text = "Jump"
-jumpbutton.Size = UDim2.new(0, 100, 0, 30)
-jumpbutton.Position = UDim2.new(0.5, -50, 0.5, 0)
-jumpbutton.Parent = mainframe
+local function speed()
+humanoid.WalkSpeed = 16
+end
 
-local speedhackbutton = Instance.new("TextButton")
-speedhackbutton.Name = "speedhack"
-speedhackbutton.Text = "Speed Hack"
-speedhackbutton.Size = UDim2.new(0, 100, 0, 30)
-speedhackbutton.Position = UDim2.new(0.5, -50, 0.5, 50)
-speedhackbutton.Parent = mainframe
+while true do
+if game.Workspace:FindFirstChild("HydraHub") then
+fly()
+end
+wait()
+end
+]]
 
-local flyhackbutton = Instance.new("TextButton")
-flyhackbutton.Name = "flyhack"
-flyhackbutton.Text = "Fly Hack"
-flyhackbutton.Size = UDim2.new(0, 100, 0, 30)
-flyhackbutton.Position = UDim2.new(0.5, -50, 0.5, 100)
-flyhackbutton.Parent = mainframe
+txtfile:Save()
 
-local invisibilitybutton = Instance.new("TextButton")
-invisibilitybutton.Name = "invisibility"
-invisibilitybutton.Text = "Invisibility"
-invisibilitybutton.Size = UDim2.new(0, 100, 0, 30)
-invisibilitybutton.Position = UDim2.new(0.5, -50, 0.5, 150)
-invisibilitybutton.Parent = mainframe
+local script = Instance.new("LocalScript")
+script.Name = "HydraHub"
+script.Parent = game.ReplicatedStorage
+script.Source = txtfile.Value
 
-local loadbutton = Instance.new("TextButton")
-loadbutton.Name = "load"
-loadbutton.Text = "Load Script"
-loadbutton.Size = UDim2.new(0, 100, 0, 30)
-loadbutton.Position = UDim2.new(0.5, -50, 0.5, -200)
-loadbutton.Parent = mainframe
-
-local loadscriptframe = Instance.new("Frame")
-loadscriptframe.Name = "loadscriptframe"
-loadscriptframe.Size = UDim2.new(0, 200, 0, 100)
-loadscriptframe.Position = UDim2.new(0.5, -100, 0.5, -250)
-loadscriptframe.Parent = executor
-
-local loadscripttext = Instance.new("TextLabel")
-loadscripttext.Name = "loadscripttext"
-loadscripttext.Text = "Load Script Here"
-loadscripttext.Size = UDim2.new(0, 200, 0, 100)
-loadscripttext.Position = UDim2.new(0.5, -100, 0.5, -250)
-loadscripttext.Parent = loadscriptframe
-
-local loadscriptbutton = Instance.new("TextButton")
-loadscriptbutton.Name = "loadscriptbutton"
-loadscriptbutton.Text = "Load Script"
-loadscriptbutton.Size = UDim2.new(0, 100, 0, 30)
-loadscriptbutton.Position = UDim2.new(0.5, -50, 0.5, -250)
-loadscriptbutton.Parent = loadscriptframe
-
-local precacheframe = Instance.new("Frame")
-precacheframe.Name = "precacheframe"
-precacheframe.Size = UDim2.new(0, 200, 0, 100)
-precacheframe.Position = UDim2.new(0.5, -100, 0.5, -300)
-precacheframe.Parent = executor
-
-local precachetext = Instance.new("TextLabel")
-precachetext.Name = "precachetext"
-precachetext.Text = "Precache Scripts"
-precachetext.Size = UDim2.new(0, 200, 0, 100)
-precachetext.Position = UDim2.new(0.5, -100, 0.5, -300)
-precachetext.Parent = precacheframe
-
-local precachebutton = Instance.new("TextButton")
-precachebutton.Name = "precachebutton"
-precachebutton.Text = "Precache"
-precachebutton.Size = UDim2.new(0, 100, 0, 30)
-precachebutton.Position = UDim2.new(0.5, -50, 0.5, -300)
-precachebutton.Parent = precacheframe
-
-local player = game.Players.LocalPlayer local dframe = Instance.new("ScreenGui") dframe.Name = "duckgo"
-dframe.Parent = player.PlayerGui dframe.Locked = false local function moveframe(input) 
-if input.KeyCode == Enum.KeyCode.A then dframe.Position = UDim2.new(dframe.Position.X.Scale - 0.001, dframe.Position.X.Offset, 
-dframe.Position.Y.Scale, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.D then dframe.Position = UDim2.new(dframe.Position.X.Scale + 0.001,
-dframe.Position.X.Offset, dframe.Position.Y.Scale,
-dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.W then dframe.Position = UDim2.new(dframe.Position.X.Scale,
-dframe.Position.X.Offset,
-dframe.Position.Y.Scale - 0.001, dframe.Position.Y.Offset) elseif input.KeyCode == Enum.KeyCode.S then dframe.Position = UDim2.new(dframe.Position.X.Scale,
-dframe.Position.X.Offset,
-dframe.Position.Y.Scale + 0.001,
-dframe.Position.Y.Offset) end end player.InputBegan:Connect(moveframe) 
-game:GetService("RunService").RenderStepped:Connect(function() dframe.Frame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1) end)
-local uis = game:GetService("RunService").RenderStepped:Connect(function()
-local vgui = game.Players.LocalPlayer.PlayerGui:WaitForChild("duckgo")
-local frame = vgui.Frame local colors = { Color3.new(1, 0, 0), Color3.new(0, 1, 0), Color3.new(0, 0, 1), Color3.new(1, 1, 0), Color3.new(1, 0, 1), Color3.new(0, 1, 1) }
-local texts = { "Script", "Exploits", "Ui", "Scripting", "Coding", "Executors" } for i, text in pairs(texts) do frame.TextLabel[i].Text = text frame.TextLabel[i].BackgroundColor3 = colors[i % #colors] end end)
+script.Parent:Clone().Parent = game.Workspace
